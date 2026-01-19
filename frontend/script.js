@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001';
+const API_URL = 'https://rag-app-5evh.onrender.com/api';
 const SESSION_ID = 'session-' + Math.random().toString(36).substring(2, 15);
 console.log('Current Session ID:', SESSION_ID);
 
@@ -73,7 +73,7 @@ async function uploadDocument() {
         progressText.textContent = '✂️ Chunking text...';
         progressFill.style.width = '25%';
 
-        const response = await fetch(`${API_URL}/api/documents/upload`, {
+        const response = await fetch(`${API_URL}/documents/upload`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -163,7 +163,7 @@ async function submitQuery() {
     document.getElementById('queryBtn').disabled = true;
 
     try {
-        const response = await fetch(`${API_URL}/api/query`, {
+        const response = await fetch(`${API_URL}/query`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
