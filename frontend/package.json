@@ -1,0 +1,12 @@
+{
+    "name": "mini-rag-frontend",
+    "version": "1.0.0",
+    "description": "Frontend for Mini RAG application",
+    "type": "module",
+    "scripts": {
+        "dev": "npx live-server --port=5000 --entry-file=index.html",
+        "build": "echo 'Static app - no build needed'",
+        "start": "npx http-server -p 5000"
+    },
+    "dependencies": {}
+}

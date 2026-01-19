@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG-App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>RAG Assistant</h1>
+            <p>Intelligent document search with AI-powered answers</p>
+        </header>
+
+        <div class="main-grid">
+            <div class="panel">
+                <h2>Documents</h2>
+
+                <div id="uploadStatus" class="status"></div>
+
+                <div class="form-group">
+                    <label>Paste Text</label>
+                    <textarea id="textInput" placeholder="Paste document text here..." rows="8"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Or Upload File</label>
+                    <div class="upload-area" id="uploadArea">
+                        <p style="color: #aaa; margin-bottom: 10px;">Drag & drop or click to select
+                        </p>
+                        <p style="color: #666; font-size: 12px;">.txt, .md files</p>
+                    </div>
+                    <input type="file" id="fileInput" accept=".txt,.md">
+                </div>
+
+                <div class="form-group">
+                    <label>Document Title (optional)</label>
+                    <input type="text" id="titleInput" placeholder="e.g., Company Policy, Research Paper...">
+                </div>
+
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Processing...</div>
+                </div>
+
+                <div class="upload-success" id="uploadSuccess">
+                    <h3>✅ Upload Complete!</h3>
+                    <p id="successMessage"></p>
+                </div>
+
+                <button id="uploadBtn" onclick="uploadDocument()">Upload Document</button>
+                <button class="secondary" onclick="clearUpload()">Clear</button>
+
+                <div id="documentsList" style="margin-top: 20px;"></div>
+            </div>
+
+            <div class="panel">
+                <h2>Search</h2>
+
+                <div id="queryStatus" class="status"></div>
+
+                <div class="query-section">
+                    <div class="form-group">
+                        <label>Question</label>
+                        <textarea id="queryInput" placeholder="Ask anything about your documents..."
+                            rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Top K Results</label>
+                        <input type="number" id="topK" value="10" min="1" max="50">
+                    </div>
+
+                    <button id="queryBtn" onclick="submitQuery()">Search & Answer</button>
+                    <button class="secondary" onclick="clearQuery()">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel results-panel" id="resultsPanel" style="display: none;">
+            <h2>Results</h2>
+
+            <div id="timingInfo" class="timing-info" style="display: none;"></div>
+            <div id="costInfo" class="cost-estimate" style="display: none;"></div>
+
+            <h3 style="margin-top: 20px; margin-bottom: 15px; color: #e4e4e4;">Answer</h3>
+            <div id="answerBox" class="answer-box"></div>
+
+            <h3 style="margin-top: 25px; margin-bottom: 15px; color: #e4e4e4;">Sources (<span id="sourceCount">0</span>)
+            </h3>
+            <div id="sourcesContainer" class="sources-container"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

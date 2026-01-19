@@ -1,0 +1,155 @@
+{
+    "name": "Mini RAG Assessment",
+    "description": "Retrieval Augmented Generation system with chunking, embedding, reranking, and LLM answer generation",
+    "version": "1.0.0",
+    "database": {
+        "type": "vector",
+        "provider": "pinecone",
+        "index_name": "mini-rag-index",
+        "dimensions": 768,
+        "metric": "cosine",
+        "metadata_fields": {
+            "document_id": "UUID of source document",
+            "title": "Document title",
+            "chunk_index": "Sequential chunk number",
+            "position": "Character offset in original",
+            "source_span": "Byte range [start-end]",
+            "content": "Full chunk text"
+        }
+    },
+    "pipelines": {
+        "upload": {
+            "steps": [
+                "chunking",
+                "embedding",
+                "upsert_to_pinecone"
+            ],
+            "chunking": {
+                "strategy": "overlapping_fixed_size",
+                "chunk_size_tokens": 1000,
+                "chunk_size_chars": 4000,
+                "overlap_percentage": 0.15,
+                "overlap_chars": 600,
+                "boundary_aware": true
+            },
+            "embedding": {
+                "provider": "google",
+                "model": "embedding-001",
+                "dimensions": 768,
+                "batch_size": 1
+            }
+        },
+        "query": {
+            "steps": [
+                "embedding_query",
+                "retrieve_top_k",
+                "rerank",
+                "generate_answer"
+            ],
+            "retrieval": {
+                "provider": "pinecone",
+                "top_k": 10,
+                "include_metadata": true,
+                "method": "cosine_similarity"
+            },
+            "reranking": {
+                "provider": "cohere",
+                "model": "rerank-english-v2.0",
+                "top_n": 5,
+                "fallback": "use_pinecone_scores"
+            },
+            "generation": {
+                "provider": "google",
+                "model": "gemini-1.5-flash",
+                "temperature": 0.7,
+                "max_tokens": 2048,
+                "citation_format": "inline_[1]_[2]",
+                "citation_extraction": "regex_pattern"
+            }
+        }
+    },
+    "api": {
+        "endpoints": [
+            {
+                "method": "POST",
+                "path": "/api/documents/upload",
+                "input": {
+                    "text": "string (document content)",
+                    "title": "string (optional)"
+                },
+                "output": {
+                    "document_id": "uuid",
+                    "chunks_created": "number",
+                    "processing_time_ms": "number"
+                }
+            },
+            {
+                "method": "POST",
+                "path": "/api/query",
+                "input": {
+                    "query": "string (question)",
+                    "top_k": "number (default: 10)"
+                },
+                "output": {
+                    "answer": "string with citations",
+                    "sources": "array of chunks",
+                    "timing": "latency breakdown",
+                    "cost_estimate": "API costs"
+                }
+            }
+        ]
+    },
+    "providers": {
+        "vector_database": {
+            "name": "Pinecone",
+            "url": "https://www.pinecone.io/",
+            "free_tier": "1 index, 1M vectors",
+            "cost": "Based on vector count and query throughput"
+        },
+        "embedding": {
+            "name": "Google Embedding API",
+            "url": "https://aistudio.google.com/",
+            "model": "embedding-001",
+            "dimensions": 768,
+            "cost": "$0.000002 per 1000 tokens"
+        },
+        "reranker": {
+            "name": "Cohere Rerank",
+            "url": "https://cohere.com/",
+            "model": "rerank-english-v2.0",
+            "free_tier": "100 API calls/min",
+            "cost": "$0.001 per document reranked"
+        },
+        "llm": {
+            "name": "Google Gemini",
+            "url": "https://aistudio.google.com/",
+            "model": "gemini-1.5-flash",
+            "free_tier": "1500 RPM",
+            "cost": "Based on input/output tokens"
+        }
+    },
+    "evaluation": {
+        "test_document": "AI and ML concepts summary",
+        "gold_qa_pairs": 5,
+        "success_rate": "80%",
+        "metrics": [
+            "Citation accuracy",
+            "Answer relevance",
+            "No hallucinations",
+            "Proper source attribution",
+            "Response time < 5s"
+        ]
+    },
+    "deployment": {
+        "frontend": {
+            "platform": "Vercel/Netlify",
+            "type": "static",
+            "build": "none (HTML only)"
+        },
+        "backend": {
+            "platform": "Render/Railway",
+            "type": "nodejs",
+            "start_command": "npm start"
+        }
+    }
+}
