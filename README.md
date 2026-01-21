@@ -4,7 +4,7 @@
 ### Intelligent Document Search with AI-Powered Answers
 
 HEAD <br/>
-[Live Demo]:(https://rag-app-omega.vercel.app/)
+[Live Demo]:(https://rag-app-omega.vercel.app/) <br/>
 [GitHub]:(https://github.com/vinayakpawar777/Rag-app)
 
 
