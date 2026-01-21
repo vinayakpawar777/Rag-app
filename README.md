@@ -3,7 +3,7 @@
 # 🚀 Mini RAG
 ### Intelligent Document Search with AI-Powered Answers
 
-<<<<<<< HEAD
+HEAD
 [![Live Demo]](https://rag-app-omega.vercel.app/)
 [![GitHub]](https://github.com/vinayakpawar777/Rag-app)
 
@@ -13,8 +13,7 @@
 [🎯 How It Works](#-how-it-works) • [🚀 Quick Start](#-quick-start) • [📊 Architecture](#-architecture) • [🧪 Evaluation](#-evaluation)
 
 </div>
-======
----
+
 
 ## 🎯 What is Mini RAG?
 
