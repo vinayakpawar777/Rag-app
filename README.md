@@ -2,9 +2,9 @@
 
 A production-minimal RAG application that retrieves relevant document chunks, reranks them, and generates grounded answers with citations using Gemini LLM.
 
-**Live Demo:** https://mini-rag-frontend2.vercel.app/
+**Live Demo:** https://rag-app-omega.vercel.app/
 
-**GitHub Repo:** https://github.com/vkkd12/mini-rag.git
+**GitHub Repo:** https://github.com/vinayakpawar777/Rag-app
 
 ---
 
