@@ -3,9 +3,9 @@
 # 🚀 Mini RAG
 ### Intelligent Document Search with AI-Powered Answers
 
-HEAD
-[![Live Demo]](https://rag-app-omega.vercel.app/)
-[![GitHub]](https://github.com/vinayakpawar777/Rag-app)
+HEAD <br/>
+[Live Demo]](https://rag-app-omega.vercel.app/)
+[GitHub]](https://github.com/vinayakpawar777/Rag-app)
 
 
 **Production-ready RAG system** • **Citations included** • **Zero hallucinations** • **Instant results**
