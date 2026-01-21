@@ -3,6 +3,7 @@
 # 🚀 Mini RAG
 ### Intelligent Document Search with AI-Powered Answers
 
+<<<<<<< HEAD
 [![Live Demo]](https://rag-app-omega.vercel.app/)
 [![GitHub]](https://github.com/vinayakpawar777/Rag-app)
 
@@ -12,7 +13,7 @@
 [🎯 How It Works](#-how-it-works) • [🚀 Quick Start](#-quick-start) • [📊 Architecture](#-architecture) • [🧪 Evaluation](#-evaluation)
 
 </div>
-
+======
 ---
 
 ## 🎯 What is Mini RAG?
@@ -418,6 +419,7 @@ mini-rag/
 │   ├── package.json
 │   └── vercel.json
 │
+<<<<<<< HEAD
 ├── SCHEMA.json                        Data model documentation
 ├── EVALUATION.md                      Test results and metrics
 └── README.md                          This file
@@ -524,3 +526,7 @@ MIT License - Feel free to use for personal or commercial projects.
 [Live Demo](https://mini-rag-frontend2.vercel.app/) • [GitHub Repo](https://github.com/vkkd12/mini-rag.git) • [Report Issue](https://github.com/vkkd12/mini-rag/issues)
 
 </div>
+=======
+└── README.md                         # This file
+```
+>>>>>>> 0e00607a296195824429f60991432ee07efd0c37
